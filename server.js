@@ -16,7 +16,7 @@ var app = express();
 var mongo = require('mongodb');
 var monk = require('monk');
 var db;
-if(process.env.PORT){
+if(process.env.SERVER_SOFTWARE=="bae/3.0"){
     console.log('server mongodb is init');
     db = monk('xPOla3Kq34SikGXnVWGUFNjj:UIZ1RYdBSiauTePP8gzoxYp9YjoQGumn@mongo.duapp.com:8908/urAFiIKlkjhtaLrPNvit');
 }else{
