@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
   var re = {
     title:"this is user title",
     body:"this is user body ",
-    time:new Date()
+    time:new Date(),
+    env:process.env
   }
   res.send(re);
 });
@@ -25,9 +26,10 @@ router.get('/add', function(req, res, next) {
   // Submit to the DB
   collection.insert(re, function (err, doc) {
     if (err) {
-      res.redirect("");
+      re.msg = err;
     }
     else {
+      re.msg = "re is insert";
       console.log("re is insert / ");
     }
   });
