@@ -4,11 +4,37 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var re = {
-    title:"this is INDEX title",
-    body:"this is INDEX body ",
+    title:"this is user title",
+    body:"this is user body ",
     time:new Date()
   }
   res.send(re);
 });
+
+
+/* GET users listing. */
+router.get('/add', function(req, res, next) {
+  var re = {
+    title:"this is user add title",
+    body:"this is user add body ",
+    time:new Date()
+  }
+  var db = req.db;
+  var collection = db.get('UsersTest');
+
+  // Submit to the DB
+  collection.insert(re, function (err, doc) {
+    if (err) {
+      res.redirect("");
+    }
+    else {
+      console.log("re is insert / ");
+    }
+  });
+
+
+  res.send(re);
+});
+
 
 module.exports = router;

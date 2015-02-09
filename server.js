@@ -10,6 +10,21 @@ var users = require('./routes/users');
 
 var app = express();
 
+
+
+
+var mongo = require('mongodb');
+var monk = require('monk');
+var db;
+if(process.env.PORT){
+    console.log('server mongodb is init');
+    db = monk('xPOla3Kq34SikGXnVWGUFNjj:UIZ1RYdBSiauTePP8gzoxYp9YjoQGumn@mongo.duapp.com:8908/urAFiIKlkjhtaLrPNvit');
+}else{
+    console.log('localhost:27017/nodetest1');
+    db = monk('localhost:27017/nodetest1');
+}
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,6 +36,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Make our db accessible to our router must before bind router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
