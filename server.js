@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var spider = require('./routes/spider');
+
+var haha = require('./lib/spider/haha/hahaSpider');
+
 
 var app = express();
 
@@ -15,14 +19,6 @@ var app = express();
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db;
-if(process.env.SERVER_SOFTWARE=="bae/3.0"){
-    console.log('server mongodb is init');
-    db = monk('xPOla3Kq34SikGXnVWGUFNjj:UIZ1RYdBSiauTePP8gzoxYp9YjoQGumn@mongo.duapp.com:8908/urAFiIKlkjhtaLrPNvit');
-}else{
-    console.log('localhost:27017/nodetest1');
-    db = monk('localhost:27017/nodetest1');
-}
 
 
 // view engine setup
@@ -37,15 +33,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// Make our db accessible to our router must before bind router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
 app.use('/', routes);
 app.use('/users', users);
+app.use('/spider', spider);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -81,8 +71,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-
-
-
 app.listen(process.env.PORT || '18080');
 
+haha.runBackSpider();

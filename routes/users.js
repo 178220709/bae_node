@@ -27,10 +27,10 @@ router.get('/add', function(req, res, next) {
   collection.insert(re, function (err, doc) {
     if (err) {
       re.msg = err;
-    }
+  }
     else {
       re.msg = "re is insert";
-      console.log("re is insert / ");
+      console.log("re is insert /");
     }
   });
 
