@@ -26,6 +26,22 @@ router.get('/haha', function(req, res, next) {
   })
 });
 
+router.get('/haha1', function(req, res, next) {
+  var cn =  require( path.join(process.cwd(), '/lib/mongodbBase/db')).spider;
+  var re = {
+    code:0,
+    msg:"this is haha list ",
+    title:"",
+    content:""
+  };
+  cn.find({}, function(err, docs) {
+    var doc = docs[0];
+    re.content = doc.content;
+    re.title = doc.flag;
+
+    res.render('spider', re);
+  })
+});
 
 
 module.exports = router;
