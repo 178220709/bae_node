@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var apiSpider = require('./routes/api/spider');
 var users = require('./routes/users');
 var spider = require('./routes/spider');
 
@@ -14,16 +15,14 @@ var haha = require('./lib/spider/haha/hahaSpider');
 
 var app = express();
 
-
-
-
 var mongo = require('mongodb');
 var monk = require('monk');
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -34,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/api', apiSpider);
 app.use('/users', users);
 app.use('/spider', spider);
 
