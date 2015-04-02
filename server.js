@@ -73,4 +73,6 @@ module.exports = app;
 
 app.listen(process.env.PORT || '18080');
 
+
+//开启哈哈爬虫服务
 haha.runBackSpider();
