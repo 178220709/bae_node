@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var cn =  require('../../lib/mongodbBase/db').spider;
+var util =  require( path.join( process.cwd(),"lib/public/util.js") );
 var _ = require('underscore');
 var findDocuments = function(opts, callback) {
     var defOpts = {
@@ -13,8 +14,12 @@ var findDocuments = function(opts, callback) {
         sort:{addedTime:-1}
     }
    var opt  = _.extend(defOpts,opts);
-
-    cn.find({},
+    //$lt:小于
+    var query = {};
+    if(opts.addedTime){
+        query.addedTime = {$gt: new Date( opts.addedTime)};
+    }
+    cn.find(query,
         {
             limit : opt.pageSize,
             skip:(opt.pageIndex-1)*opt.pageSize,
@@ -25,15 +30,15 @@ var findDocuments = function(opts, callback) {
         });
 }
 
-
-
 router.post('/haha/getList', function(req, res, next) {
+    var para = util.getParasFromReq(["pageSize","pageIndex","addedTime"],req);
+
     var result = {
         code:0,
         msg:"this is haha list ",
         rows:{}
     };
-    findDocuments({pageSize:12},function(docs){
+    findDocuments(req.body,function(docs){
          var list = docs;
         result.rows = docs;
         res.send(result);
