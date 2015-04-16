@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var cn =  require('../../lib/mongodbBase/db').spider;
+var cn =  require('../../lib/mongodbBase/db').get("spider");
 var util =  require( path.join( process.cwd(),"lib/public/util.js") );
 var _ = require('underscore');
 var findDocuments = function(opts, callback) {

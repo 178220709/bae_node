@@ -1,3 +1,6 @@
+'use strict';
+/*global global, require, process, module, baejs*/
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,12 +8,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var apiSpider = require('./routes/api/spider');
-var users = require('./routes/users');
-var spider = require('./routes/spider');
 
-var haha = require('./lib/spider/haha/hahaSpider');
+global.baejs = {}; // 注册全局变量baejs
+baejs.db =require('./lib/mongodbBase/db.js');
+baejs.util =  require("./lib/public/util.js");
+baejs.libs = {};
+baejs.libs._ = require('underscore');
+baejs.tools = {};
+baejs.tools.logger = logger;
+baejs.libs.thenjs = require("thenjs");
+
+baejs.express = express;
+baejs.express = express;
+
+
+
 
 
 var app = express();
@@ -32,8 +44,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/api', apiSpider);
+
+
+//app.all('*', function (req, res, next) {
+//    var path = req.path.split('/');
+//    try{
+//        var route = require('./routes/'+path[1]);
+//        var fn = route[req.path[1]];
+//        fn(req, res);
+//    }
+//    catch(err){
+//        next();
+//    }
+//});
+
+var index = require('./routes/index');
+var registerAPI = require('./routes/registerAPI');
+var users = require('./routes/users');
+var spider = require('./routes/spider');
+app.use('/', index);
+app.use('/api', registerAPI);
 app.use('/users', users);
 app.use('/spider', spider);
 
@@ -74,5 +104,8 @@ module.exports = app;
 app.listen(process.env.PORT || '18080');
 
 
-//开启哈哈爬虫服务
+//开启爬虫
+var haha = require('./lib/spider/haha/hahaSpider');
 haha.runBackSpider();
+var youmin =  require('./lib/spider/youmin/youmin');
+youmin.runBackSpider();
