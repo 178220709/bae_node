@@ -19,7 +19,5 @@
     "cheerio": "~0.18.0",
     "underscore": "~1.8.0",
     "underscore.string": "~3.0.3",
-    "restify": "~2.8.5",
-    "thenjs": "~1.5.0"
-  }
+"q": "~1.2.0","thenjs": "~1.5.0"  }
 }
