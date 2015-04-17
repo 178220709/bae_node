@@ -7,13 +7,13 @@ var util =  baejs.util;
 var _ = require('underscore');
 var then = require('thenjs');
 
-var findDocuments = function(opts,cnName) {
+var findDocuments = function(opts,cnName,result) {
     var defOpts = {
         pageSize : 10,
         pageIndex : 1,
         sort:{addedTime:-1}
     };
-   var opt  = _.extend(defOpts,opts);
+    var opt  = _.extend(defOpts,opts);
     //$lt:小于
     var query = {};
     if(opts.addedTime){
@@ -22,7 +22,12 @@ var findDocuments = function(opts,cnName) {
     if(opts.cnName){
         cnName = opts.cnName;
     }
+    result.pageSize = opt.pageSize;
+    result.pageIndex = opt.pageIndex;
     return then(function(cont){
+        db.get(cnName).count(query,cont);
+    }).then(function(cont,count){
+        result.count = count;
         db.get(cnName).find(query,
             {
                 limit : opt.pageSize,
@@ -30,6 +35,8 @@ var findDocuments = function(opts,cnName) {
                 sort : opt.sort
             }, // <-  here
             cont); //  function (err,res)
+    }).fail(function(cont,error){
+        result.msg=error.message;
     });
 };
 
@@ -37,10 +44,11 @@ exports.getSpiderList = function(req, res, next){
     var para = util.getParasFromReq(["pageSize","pageIndex","addedTime"],req);
     var result = {
         code:0,
-        msg:"this is haha list ",
+        count:0,
+        msg:"this is "+req.body.cnName+" list ",
         rows:{}
     };
-    findDocuments(req.body,"spider")
+    findDocuments(req.body,"spider",result)
         .then(function(cont,docs){
             var list = docs;
             result.rows = docs;
