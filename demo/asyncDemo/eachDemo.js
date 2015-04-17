@@ -1,3 +1,7 @@
+'use strict';
+/*global global, require, process, module, baejs*/
+/*jslint node: true */
+
 var _ = require('underscore');
 var then = require('thenjs');
 
@@ -59,9 +63,9 @@ var demo3 = function () {
     function printAll2(cont) { //直接使用回调
         index++;
         if (index > arr.length - 1) {
-            cont;
+            cont();
         } else {
-            getItem2(index, printAll2)
+            getItem2(index, printAll2);
         }
     }
 

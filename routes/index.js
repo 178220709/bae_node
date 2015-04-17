@@ -1,3 +1,7 @@
+'use strict';
+/*global global, require, process, module, baejs*/
+/*jslint node: true */
+
 var express = require('express');
 var router = express.Router();
 

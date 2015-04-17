@@ -1,5 +1,6 @@
 'use strict';
-/*global require, module, Buffer, process, baejs*/
+/*global global, require, process, module, baejs*/
+/*jslint node: true */
 
 
 var express = require('express');

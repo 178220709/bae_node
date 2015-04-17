@@ -13,7 +13,7 @@ var main = {
     },
     RefTest: function () {
         var ref1 = require('..\\demo1\\refTest.js');
-        var ref2 = require('../../lib/demo1/refTest.js');
+        var ref2 = require('.././refTest.js');
     }
 }
 
