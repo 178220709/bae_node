@@ -19,8 +19,12 @@
     "cheerio": "~0.18.0",
     "underscore": "~1.8.0",
     "underscore.string": "~3.0.3",
-    "q": "~1.2.0",
-    "thenjs": "~1.5.0",
-    "bson": "~0.2.18"
+
+    "thenjs": "~1.5.0"
+
+  },
+  "devDependencies": {
+    "bson": "~0.2.18",
+    "q": "~1.2.0"
   }
 }

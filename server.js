@@ -11,6 +11,7 @@ var _ = require('underscore');
 
 var MongoClient = require('mongodb').MongoClient;
 var url ="mongodb://" +require('./lib/mongodbBase/db.js').url;
+ url ="mongodb://localhost:27017/nodetest1" ;
 MongoClient.connect(url, function (err, db) {
     var cn1 = db.collection('spider');
     // var cn2 = db.collection('sp_youmin');
@@ -90,4 +91,4 @@ module.exports = app;
 app.listen(process.env.PORT || '18080');
 
 //开启爬虫task
-baejs.apis.task.start(true);
+baejs.apis.task.start();
