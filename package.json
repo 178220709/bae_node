@@ -14,10 +14,13 @@
     "ejs": "~2.3.1",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
-    "mongodb": "*",
+    "mongodb": "~1.4.30",
     "monk": "*",
     "cheerio": "~0.18.0",
     "underscore": "~1.8.0",
     "underscore.string": "~3.0.3",
-"q": "~1.2.0","thenjs": "~1.5.0"  }
+    "q": "~1.2.0",
+    "thenjs": "~1.5.0",
+    "bson": "~0.2.18"
+  }
 }

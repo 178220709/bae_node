@@ -6,33 +6,36 @@ var express = require('express');
 var router = express.Router();
 var _ = require('underscore');
 
+
 //注册api里面的接口
-var apis = ["spider"];
-
-var apiList = [];//item : ctrl , action , fun
-_.each(apis, function (apiName) {
-    var _api = require("../api/" + apiName + ".js");
-
-    for (var action  in _api) {
-        apiList.push({
-            ctrl: apiName,
-            action: action,
-            fun: _api[action]
-        });
+var apis = baejs.apis;
+var apiList = []; //item : ctrl , action , fun
+for(var apiKey in apis){
+    if(apiKey){
+        for (var actionKey  in apis[apiKey]) {
+            if (actionKey) {
+                apiList.push({
+                    ctrl: apiKey,
+                    action: actionKey,
+                    fun: apis[apiKey][actionKey]
+                });
+            }
+        }
     }
-});
+}
 
-_.each(apiList, function (actionObj) {
-    router.post(_.template("/<%= ctrl %>/<%= action %>")(actionObj), actionObj.fun);
+
+_.each(apiList, function (api) {
+    router.post(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
 });
 
 
 if (!process.env.USER_ShowApi || process.env.USER_ShowApi === 1) {//配置，关掉api说明
     router.get('/', function (req, res, next) {
         res.render('apiShow', {
-            title: 'api 说明', actions: _.map(apiList, function (item) {
+            title: 'api 说明', actions: _.map(apiList, function (api) {
                 return {
-                    ctrl: item.ctrl, action: item.action
+                    ctrl: api.ctrl, action: api.action
                 };
             })
         });

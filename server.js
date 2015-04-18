@@ -7,44 +7,41 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var _ = require('underscore');
 
 var MongoClient = require('mongodb').MongoClient;
-// Connection URL
-var url = 'mongodb://localhost:27017/jsonsong';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-
-    console.log("Connected correctly to server");
-
-    var cn1 = db.collection('sp_haha');
-    var cn2 = db.collection('sp_youmin');
+var url ="mongodb://" +require('./lib/mongodbBase/db.js').url;
+MongoClient.connect(url, function (err, db) {
+    var cn1 = db.collection('spider');
+    // var cn2 = db.collection('sp_youmin');
     function updateFn(err, rs) {
         console.log(rs);
     }
     var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
-
-    cn2.update({}, {$rename: {"url": "Url"}},{}, updateFn);
-
-    //_.each(upArr, function (item) {
-    //    cn1.update({}, {$rename: item},{}, updateFn);
-    //    cn2.update({}, {$rename: item},{}, updateFn);
-    //});
+    _.each(upArr, function (item) {
+        cn1.update({}, {$rename: item}, {}, updateFn);
+       // cn2.update({}, {$rename: item}, {}, updateFn);
+    });
 });
-
-
 
 
 global.baejs = {}; // 注册全局变量baejs
 baejs.db = require('./lib/mongodbBase/db.js').db;
 baejs.util = require("./lib/public/util.js");
 baejs.libs = {};
-baejs.libs._ = require('underscore');
 baejs.tools = {};
 baejs.tools.logger = logger;
 baejs.libs.thenjs = require("thenjs");
-
 baejs.express = express;
-var _ = baejs.libs._;
+
+//注册api里面的接口
+var apiKeyArray = ["spider", "task"];
+baejs.apis = {};
+_.each(apiKeyArray, function (apiName) {
+    baejs.apis[apiName] = require("./api/" + apiName + ".js");
+});
+
+
 var app = express();
 
 // view engine setup
@@ -92,24 +89,5 @@ if (app.get('env') === 'development') {
 module.exports = app;
 app.listen(process.env.PORT || '18080');
 
-//开启爬虫
-//var haha = require('./lib/spider/haha/haha');
-//haha.runBackSpider();
-//
-//var youmin =  require('./lib/spider/youmin/youmin');
-//youmin.runBackSpider();
-
-
-
-
-
-
-
-
-//cn.update({}, {$rename : {"url" : "Url"}},updateFn);
-//cn.update({}, {$rename : {"flag" : "Flag"}}, false, true);
-//cn.update({}, {$rename : {"addedTime" : "AddedTime"}}, false, true);
-//cn.update({}, {$rename : {"weight" : "Weight"}}, false, true);
-//cn.update({}, {$rename : {"content" : "Content"}}, false, true);
-
-
+//开启爬虫task
+baejs.apis.task.start();
