@@ -23,8 +23,9 @@ exports.start = function(isImmediately){
         if(task.instance){
             clearInterval(task.instance);
         }
-        console.log("process.env.USER_ImmediatelyTask is " +process.env.USER_ImmediatelyTask);
+
         if ((process.env.USER_ImmediatelyTask && process.env.USER_ImmediatelyTask === 1) ||isImmediately) {
+            console.log("process.env.USER_ImmediatelyTask is " +process.env.USER_ImmediatelyTask+",task is call"+ task.getCurrent);
             task.getCurrent();
         }
         task.instance = setInterval(task.getCurrent, task.interval);
