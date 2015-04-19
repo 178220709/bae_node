@@ -9,28 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
 
-var MongoClient = require('mongodb').MongoClient;
-var url ="mongodb://" +require('./lib/mongodbBase/db.js').url;
- //url ="mongodb://localhost:27017/nodetest1" ;
-//try{
-//    MongoClient.connect(url, function (err, db) {
-//        var cn1 = db.collection('spider');
-//        // var cn2 = db.collection('sp_youmin');
-//        function updateFn(err, rs) {
-//            console.log(rs);
-//        }
-//        var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
-//        _.each(upArr, function (item) {
-//            cn1.update({}, {$rename: item}, {}, updateFn);
-//            // cn2.update({}, {$rename: item}, {}, updateFn);
-//        });
-//    });
-//}
-//catch (err){
-//console.log(err);
-//}
-
-
 
 global.baejs = {}; // 注册全局变量baejs
 baejs.db = require('./lib/mongodbBase/db.js').db;
@@ -42,7 +20,7 @@ baejs.libs.thenjs = require("thenjs");
 baejs.express = express;
 
 //注册api里面的接口
-var apiKeyArray = ["spider", "task"];
+var apiKeyArray = ["spider", "task","temp"];
 baejs.apis = {};
 _.each(apiKeyArray, function (apiName) {
     baejs.apis[apiName] = require("./api/" + apiName + ".js");

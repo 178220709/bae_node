@@ -58,3 +58,22 @@ exports.getSpiderList = function(req, res, next){
         });
 };
 
+exports.getOne = function(req, res, next){
+    var url = req.body.url;
+    var spiderName = req.body.spiderName;
+    if(!url || !spiderName){
+        res.send("url spiderName  is need ");
+        return;
+    }
+ var spider = require("../lib/spider/youmin/youmin");
+    spider.addModelThen(url).then(function(cont,result){
+        res.send(result);
+    });
+};
+
+var test = function(){
+    var url = "http://www.gamersky.com/ent/201501/508132.shtml";
+    var res= {send: console.log};
+    exports.getOne( {body:{url:url,spiderName:"youmin"}} ,res);
+
+}();

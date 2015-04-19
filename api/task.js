@@ -8,7 +8,8 @@ var tasks = [{name: "haha", getCurrent: require('../lib/spider/haha/haha').getCu
 
 
 
-exports.runOnce = function(name){
+exports.runOnce = function(req, res, next){
+var name = req.body.name;
     var rTasks = tasks;
     if(name){
         rTasks = _.filter(rTasks,function(task){return task.name===name;});
@@ -16,16 +17,19 @@ exports.runOnce = function(name){
     _.each(rTasks,function(task){
         task.getCurrent();
     });
+
 };
 
-exports.start = function(isImmediately){
+exports.start = function(req, res, next){
+    var isImmediately = false;
+    if(req===true){
+        isImmediately=true;
+    }
     _.each(tasks,function(task){
         if(task.instance){
             clearInterval(task.instance);
         }
-
         if ((process.env.USER_ImmediatelyTask && process.env.USER_ImmediatelyTask === 1) ||isImmediately) {
-            console.log("process.env.USER_ImmediatelyTask is " +process.env.USER_ImmediatelyTask+",task is call"+ task.getCurrent);
             task.getCurrent();
         }
         task.instance = setInterval(task.getCurrent, task.interval);
