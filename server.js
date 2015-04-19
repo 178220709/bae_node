@@ -12,23 +12,23 @@ var _ = require('underscore');
 var MongoClient = require('mongodb').MongoClient;
 var url ="mongodb://" +require('./lib/mongodbBase/db.js').url;
  //url ="mongodb://localhost:27017/nodetest1" ;
-try{
-    MongoClient.connect(url, function (err, db) {
-        var cn1 = db.collection('spider');
-        // var cn2 = db.collection('sp_youmin');
-        function updateFn(err, rs) {
-            console.log(rs);
-        }
-        var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
-        _.each(upArr, function (item) {
-            cn1.update({}, {$rename: item}, {}, updateFn);
-            // cn2.update({}, {$rename: item}, {}, updateFn);
-        });
-    });
-}
-catch (err){
-console.log(err);
-}
+//try{
+//    MongoClient.connect(url, function (err, db) {
+//        var cn1 = db.collection('spider');
+//        // var cn2 = db.collection('sp_youmin');
+//        function updateFn(err, rs) {
+//            console.log(rs);
+//        }
+//        var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
+//        _.each(upArr, function (item) {
+//            cn1.update({}, {$rename: item}, {}, updateFn);
+//            // cn2.update({}, {$rename: item}, {}, updateFn);
+//        });
+//    });
+//}
+//catch (err){
+//console.log(err);
+//}
 
 
 
@@ -97,4 +97,4 @@ module.exports = app;
 app.listen(process.env.PORT || '18080');
 
 //开启爬虫task
-//baejs.apis.task.start();
+baejs.apis.task.start();
