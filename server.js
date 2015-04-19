@@ -75,4 +75,4 @@ module.exports = app;
 app.listen(process.env.PORT || '18080');
 
 //开启爬虫task
-baejs.apis.task.start();
+baejs.apis.task.start(true);
