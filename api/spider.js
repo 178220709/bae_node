@@ -11,13 +11,13 @@ var findDocuments = function(opts,cnName,result) {
     var defOpts = {
         pageSize : 10,
         pageIndex : 1,
-        sort:{addedTime:-1}
+        sort:{AddedTime:-1}
     };
     var opt  = _.extend(defOpts,opts);
     //$lt:小于
     var query = {};
-    if(opts.addedTime){
-        query.addedTime = {$gt: new Date( opts.addedTime)};
+    if(opts.AddedTime){
+        query.AddedTime = {$gt: new Date( opts.AddedTime)};
     }
     if(opts.cnName){
         cnName = opts.cnName;
@@ -41,7 +41,7 @@ var findDocuments = function(opts,cnName,result) {
 };
 
 exports.getSpiderList = function(req, res, next){
-    var para = util.getParasFromReq(["pageSize","pageIndex","addedTime"],req);
+
     var result = {
         Code:0,
         Count:0,
@@ -51,7 +51,7 @@ exports.getSpiderList = function(req, res, next){
     findDocuments(req.body,"spider",result)
         .then(function(cont,docs){
             var list = docs;
-            result.rows = docs;
+            result.Rows = docs;
             res.send(result);
         }).fail(function(cont,error){
             res.send(error);
