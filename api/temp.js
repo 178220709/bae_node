@@ -37,7 +37,7 @@ exports.rename2 = function (req, res, next) {
         newm.Url = item.url;
         newm.Flag = item.flag;
         newm.AddedTime = item.addedTime;
-        newm.weight = item.weight;
+        newm.Weight = item.weight;
         newm.Content = item.content;
         cn.insert(newm,cont);
     }).then(function(cont,result){
@@ -55,11 +55,16 @@ exports.del1 = function (req, res, next) {
 };
 exports.del2 = function (req, res, next) {
     var cn  = require('../lib/mongodbBase/db').cns.spider;
+    cn.remove({$gt: new Date( "2015-04-19")},function(err,count){
+        res.send(count);
+    });
+};
+exports.del2 = function (req, res, next) {
+    var cn  = require('../lib/mongodbBase/db').cns.spider;
     cn.remove({$lt: new Date( "2015-04-19")},function(err,count){
         res.send(count);
     });
 };
-
 var test = function(){
     var res= {send: console.log};
     exports.rename2(null,res);
