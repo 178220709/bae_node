@@ -5,9 +5,6 @@ var _ = require('underscore');
 var tasks = [{name: "haha", getCurrent: require('../lib/spider/haha/haha').getCurrent, interval: 30 * 60 * 1300,instance:null},
     {name: "youmin", getCurrent: require('../lib/spider/youmin/youmin').getCurrent, interval: 30 * 60 * 1500,instance:null}];
 
-
-
-
 exports.runOnce = function(req, res, next){
 var name = req.body.name;
     var rTasks = tasks;
@@ -17,7 +14,6 @@ var name = req.body.name;
     _.each(rTasks,function(task){
         task.getCurrent();
     });
-
 };
 
 exports.start = function(req, res, next){

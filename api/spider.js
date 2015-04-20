@@ -22,12 +22,12 @@ var findDocuments = function(opts,cnName,result) {
     if(opts.cnName){
         cnName = opts.cnName;
     }
-    result.pageSize = opt.pageSize;
-    result.pageIndex = opt.pageIndex;
+    result.PageSize = opt.pageSize;
+    result.PageIndex = opt.pageIndex;
     return then(function(cont){
         db.get(cnName).count(query,cont);
     }).then(function(cont,count){
-        result.count = count;
+        result.Count = count;
         db.get(cnName).find(query,
             {
                 limit : opt.pageSize,
@@ -36,17 +36,17 @@ var findDocuments = function(opts,cnName,result) {
             }, // <-  here
             cont); //  function (err,res)
     }).fail(function(cont,error){
-        result.msg=error.message;
+        result.Msg=error.message;
     });
 };
 
 exports.getSpiderList = function(req, res, next){
     var para = util.getParasFromReq(["pageSize","pageIndex","addedTime"],req);
     var result = {
-        code:0,
-        count:0,
-        msg:"this is "+req.body.cnName+" list ",
-        rows:{}
+        Code:0,
+        Count:0,
+        Msg:"this is "+req.body.cnName+" list ",
+        Rows:{}
     };
     findDocuments(req.body,"spider",result)
         .then(function(cont,docs){
@@ -74,6 +74,6 @@ exports.getOne = function(req, res, next){
 var test = function(){
     var url = "http://www.gamersky.com/ent/201501/508132.shtml";
     var res= {send: console.log};
-    exports.getOne( {body:{url:url,spiderName:"youmin"}} ,res);
+  //  exports.getOne( {body:{url:url,spiderName:"youmin"}} ,res);
 
 }();

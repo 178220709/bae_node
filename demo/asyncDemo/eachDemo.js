@@ -15,9 +15,9 @@ var demo1 = function () {
             var test = (new Date()).getTime();
             log(test);
 
-        }, 2000)
-    })
-}
+        }, 2000);
+    });
+};
 
 
 var demo2 = function () {
@@ -26,11 +26,11 @@ var demo2 = function () {
             var test = (new Date()).getTime();
             log(test);
             cont(null, item * 2);
-        }, 2000)
+        }, 2000);
     }).then(function (cont, item) {
         log(item);
-    })
-}
+    });
+};
 
 
 var demo3 = function () {
@@ -55,7 +55,7 @@ var demo3 = function () {
         if (index > arr.length - 1) {
             return;
         } else {
-            getItem(index, printAll)
+            getItem(index, printAll);
         }
     }
 
@@ -69,11 +69,34 @@ var demo3 = function () {
         }
     }
 
-
-
-
 };
-demo3();
+var demo4 = function () {
+    var thenFun = function(cont,value){
+            if(value===2){
+                cont("value is 2 error");
+            }else{
+                cont();
+            }
+    };
+
+    then(function(cont){
+        log("first is call");
+        cont();
+    }).then(function(cont){
+        log("t2 f  is call");
+        thenFun(cont,1);
+        log("t2 e  is call");
+    }).then(function(cont){
+        thenFun(cont,2);
+        log("t3 is call");
+    }).then(function(cont){
+        log("t4 is call");
+    }).fail(function(cont,error){
+        log(error);
+    });
+
+
+}();
 
 
 

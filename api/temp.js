@@ -10,7 +10,6 @@ exports.rename = function (req, res, next) {
     // url = "mongodb://localhost:27017/nodetest1";
     var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
     var cn = {};
-
     then(function (cont) {
         return MongoClient.connect(url, cont);
     }).then(function (cont, db) {
@@ -24,6 +23,25 @@ exports.rename = function (req, res, next) {
         res.send(error);
     });
 };
+
+
+exports.rename2 = function (req, res, next) {
+    var cn  = require('../lib/mongodbBase/db').cns.spider;
+    var gList = [];
+    then(function(cont){
+        cn.find({},{},cont);
+    }).then(function(cont,list){
+        gList = list;
+        cont(list);
+    }).each(null,function(cont,item){
+        cont(null,item.url);
+    }).then(function(cont,result){
+        res.send(result);
+    }).fail(function(cont,error){
+        res.send(error);
+    });
+};
+
 
 var test = function(){
     var res= {send: console.log};
