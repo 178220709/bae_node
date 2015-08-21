@@ -20,7 +20,7 @@ baejs.libs.thenjs = require("thenjs");
 baejs.express = express;
 
 //注册api里面的接口
-var apiKeyArray = ["spider", "task","temp"];
+var apiKeyArray = ["spider", "task","temp","jsonp"];
 baejs.apis = {};
 _.each(apiKeyArray, function (apiName) {
     baejs.apis[apiName] = require("./api/" + apiName + ".js");

@@ -59,7 +59,7 @@ exports.del2 = function (req, res, next) {
         res.send(count);
     });
 };
-exports.del2 = function (req, res, next) {
+exports.del3 = function (req, res, next) {
     var cn  = require('../lib/mongodbBase/db').cns.spider;
     cn.remove({$lt: new Date( "2015-04-19")},function(err,count){
         res.send(count);

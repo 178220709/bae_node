@@ -75,5 +75,4 @@ var test = function(){
     var url = "http://www.gamersky.com/ent/201501/508132.shtml";
     var res= {send: console.log};
   //  exports.getOne( {body:{url:url,spiderName:"youmin"}} ,res);
-
 }();
