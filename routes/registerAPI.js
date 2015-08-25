@@ -4,7 +4,7 @@
 
 var express = require('express');
 var router = express.Router();
-var _ = require('underscore');
+var _ = require('lodash');
 
 
 //注册api里面的接口

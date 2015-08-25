@@ -1,7 +1,7 @@
 'use strict';
 /*global global, require, process, module, baejs*/
 /*jslint node: true */
-var _ = require('underscore');
+var _ = require('lodash');
 var then = require('thenjs');
 
 exports.rename = function (req, res, next) {

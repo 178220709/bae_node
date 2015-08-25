@@ -2,7 +2,7 @@
 /*global global, require, process, module, baejs*/
 /*jslint node: true */
 
-var _ = require('underscore');
+var _ = require('lodash');
 var then = require('thenjs');
 
 var arr = [1, 2, 3, 4, 5];

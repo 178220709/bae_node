@@ -1,9 +1,11 @@
 'use strict';
 /*global global, require, process, module, baejs*/
 /*jslint node: true */
-var _ = require('underscore');
-var tasks = [{name: "haha", getCurrent: require('../lib/spider/haha/haha').getCurrent, interval: 30 * 60 * 1300,instance:null},
-    {name: "youmin", getCurrent: require('../lib/spider/youmin/youmin').getCurrent, interval: 30 * 60 * 1500,instance:null}];
+var _ = require('lodash');
+var tasks = [
+    {name: "haha", getCurrent: require('../lib/spider/haha/haha').getCurrent, interval: 30 * 60 * 1300,instance:null},
+    {name: "youmin", getCurrent: require('../lib/spider/youmin/youmin').getCurrent, interval: 30 * 60 * 1500,instance:null}
+];
 
 exports.runOnce = function(req, res, next){
 var name = req.body.name;

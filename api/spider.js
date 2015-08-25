@@ -4,7 +4,7 @@
 
 var db =  baejs.db;
 var util =  baejs.util;
-var _ = require('underscore');
+var _ = require('lodash');
 var then = require('thenjs');
 
 var findDocuments = function(opts,cnName,result) {

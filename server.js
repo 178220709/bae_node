@@ -7,7 +7,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var _ = require('underscore');
+var _ = require('lodash');
+var debug = require('debug');
 
 
 global.baejs = {}; // 注册全局变量baejs
@@ -69,10 +70,19 @@ if (app.get('env') === 'development') {
             error: err
         });
     });
+}else{
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
 }
 
 module.exports = app;
 app.listen(process.env.PORT || '18080');
 
 //开启爬虫task
-baejs.apis.task.start();
+debug("listen is over ");
+//baejs.apis.task.start();
