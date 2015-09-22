@@ -31,21 +31,31 @@ router.get('/haha', function (req, res, next) {
     });
 });
 
-router.get('/haha1', function (req, res, next) {
-    
-    var re = {
-        code: 0,
-        msg: "this is haha list ",
-        title: "",
-        content: ""
+router.get('/getSteel', function (req, res, next) {
+
+    String.prototype.format = function () {
+        var args = arguments;
+        var reg = /\{(\d+)}/g;
+        return this.replace(reg, function (g0, g1) {
+            return args[+g1];
+        });
     };
-    cn.find({}, function (err, docs) {
-        var doc = docs[0];
-        re.content = doc.content;
-        re.title = doc.flag;
-        
-        res.render('spider', re);
-    });
+
+    var fun = function(){
+        window.gtoken = "server : " +  new Date();
+    };
+
+    var obj = {
+        uname:222
+    }
+
+    var paras = req.query;
+    if(paras.jsonpRequest){
+        res.send  (   "{0}({1})".format(paras.jsonpRequest, '{uname:"liyh",pwd:"123"}')   );
+
+        return ;
+    }
+    res.send(obj);
 });
 
 
