@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
-var debug = require('debug');
+
 
 
 global.baejs = {}; // 注册全局变量baejs
@@ -84,5 +84,4 @@ module.exports = app;
 app.listen(process.env.PORT  || process.env.VCAP_APP_PORT || '18080');
 
 //开启爬虫task
-debug("listen is over ");
 //baejs.apis.task.start();

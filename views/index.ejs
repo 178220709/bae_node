@@ -1,27 +1,27 @@
-<html><head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>spider</title>
-  <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.js"></script>
- </head>
-<body >
+    <title>spider - <%= time%></title>
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.js"></script>
+</head>
+<body>
 
 <p>hello node.js</p>
 
 
 <script>
-  $(function() {
-
-    setTimeout(function () {
-      $.post("/api/haha/getList", { pageSize:11}, function(data) {
-      var result = data;
-      });
-
-    },1000)
+    $(function () {
 
 
-  });
+//      $.post("/api/haha/getList", { pageSize:11}, function(data) {
+//      var result = data;
+//      });
+
+
+    });
 
 </script>
 
-</body></html>
+</body>
+</html>
