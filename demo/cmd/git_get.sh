@@ -1,2 +1,4 @@
-cd /work
-git clone https://github.com/178220709/bae_node.git
+#!/bin/sh
+cd /work/bae_node
+git pull
+npm update
