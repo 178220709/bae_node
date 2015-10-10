@@ -18,7 +18,7 @@
     "cheerio": "~0.18.0",
     "lodash": "*",
     "thenjs": "~2.0.0"
-  },
+  },  
   "devDependencies": {
     "bson": "~0.2.18",
     "debug": "~2.1.1",
