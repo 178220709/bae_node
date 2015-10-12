@@ -81,7 +81,7 @@ if (app.get('env') === 'development') {
 }
 
 module.exports = app;
-app.listen(process.env.PORT  || process.env.VCAP_APP_PORT || '18080');
+app.listen(process.env.PORT  || process.env.VCAP_APP_PORT || '4071');
 
 //开启爬虫task
 //baejs.apis.task.start();
