@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 
 
-
 global.baejs = {}; // 注册全局变量baejs
 baejs.db = require('./lib/mongodbBase/db.js').db;
 baejs.util = require("./lib/public/util.js");
