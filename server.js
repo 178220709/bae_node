@@ -33,7 +33,7 @@ taskConfig();
 
 
 var app = express();
-app.set('views', process.cwd()+'/views');
+app.set('views','./views');
 configRouter.cfgRouter(app);
 configRouter.cfgView(app);
 configRouter.cfgError(app);
