@@ -28,7 +28,7 @@ for(var apiKey in apis){
 
 
 _.each(apiList, function (api) {
-   // router.post(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
+    router.post(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
     router.get(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
 });
 

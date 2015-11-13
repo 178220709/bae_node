@@ -3,7 +3,7 @@
 /*jslint node: true */
 
 var express = require('express');
-var util = require('../lib/public/util');
+var util = require('../app/public/util');
 var router = express.Router();
 
 

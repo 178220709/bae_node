@@ -8,9 +8,10 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 
+
 module.exports.cfgView = function(app){
     // view engine setup
-    app.set('views', '../views');
+    app.set('views', './views');
     //app.set('view engine', 'jade');
     app.set('view engine', 'ejs');
 
@@ -19,7 +20,8 @@ module.exports.cfgView = function(app){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
-    app.use(express.static( '../public'));
+    app.use(express.static("./public"));
+    //app.use(express.static(path.join(__dirname, 'public')));
 };
 
 module.exports.cfgRouter = function(app){

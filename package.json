@@ -22,7 +22,9 @@
   "devDependencies": {
     "bson": "~0.2.18",
     "debug": "~2.1.1",
-    "q": "~1.2.0"
+    "q": "~1.2.0",
+    "chai": "*",
+    "mocha":"*"
   },
   "engines": {
     "node": ">=0.10"

@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var cn = require('../lib/mongodbBase/db').cns.haha;
+var cn = require('../app/mongodbBase/db').spider;
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {

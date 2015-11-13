@@ -2,34 +2,43 @@
 /*global global, require, process, module, baejs*/
 /*jslint node: true */
 var _ = require('lodash');
-var tasks = [
-    {name: "haha", getCurrent: require('../lib/spider/haha/haha').getCurrent, interval: 30 * 60 * 1300,instance:null},
-    {name: "youmin", getCurrent: require('../lib/spider/youmin/youmin').getCurrent, interval: 30 * 60 * 1500,instance:null}
-];
+var taskFactory = require('../app/task/taskFactory');
 
-exports.runOnce = function(req, res, next){
-var name = req.body.name;
+
+exports.getList = function (req, res, next) {
+    var tasks = taskFactory.getAll();
+    var taskStatus = _.map(tasks, function (item) {
+        return item.name + "   status : " +item.status;
+    });
+    res.send(taskStatus);
+};
+
+
+function filterTask(tasks,name) {
     var rTasks = tasks;
-    if(name){
-        rTasks = _.filter(rTasks,function(task){return task.name===name;});
+    if (name) {
+        rTasks = _.filter(rTasks, function (task) {
+            return task.name === name;
+        });
     }
-    _.each(rTasks,function(task){
-        task.getCurrent();
+    return rTasks;
+}
+
+
+exports.start = function (req, res, next) {
+    var name = req.body.name;
+    var tasks = taskFactory.getAll();
+    var rTasks = filterTask(tasks,name);
+    _.each(rTasks, function (task) {
+        task.start();
     });
 };
 
-exports.start = function(req, res, next){
-    var isImmediately = false;
-    if(req===true){
-        isImmediately=true;
-    }
-    _.each(tasks,function(task){
-        if(task.instance){
-            clearInterval(task.instance);
-        }
-        if ((process.env.USER_ImmediatelyTask && process.env.USER_ImmediatelyTask === 1) ||isImmediately) {
-            task.getCurrent();
-        }
-        task.instance = setInterval(task.getCurrent, task.interval);
+exports.stop = function (req, res, next) {
+    var name = req.body.name;
+    var tasks = taskFactory.getAll();
+    var rTasks = filterTask(tasks,name);
+    _.each(rTasks, function (task) {
+        task.stop();
     });
 };

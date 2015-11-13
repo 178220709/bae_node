@@ -65,7 +65,7 @@ exports.getOne = function(req, res, next){
         res.send("url spiderName  is need ");
         return;
     }
- var spider = require("../lib/spider/youmin/youmin");
+ var spider = require("./spider/youmin/youmin");
     spider.addModelThen(url).then(function(cont,result){
         res.send(result);
     });

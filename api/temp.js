@@ -3,10 +3,12 @@
 /*jslint node: true */
 var _ = require('lodash');
 var then = require('thenjs');
+var mongobase =  require('../app/mongodbBase/db');
+var spider = mongobase.spider;
 
 exports.rename = function (req, res, next) {
     var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://" + require('../lib/mongodbBase/db.js').url;
+    var url = "mongodb://" + mongobase.url;
     // url = "mongodb://localhost:27017/nodetest1";
     var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
     var cn = {};
@@ -26,7 +28,7 @@ exports.rename = function (req, res, next) {
 
 
 exports.rename2 = function (req, res, next) {
-    var cn  = require('../lib/mongodbBase/db').cns.spider;
+    var cn  = mongobase.spider;
     var upArr = [{"url": "Url"}, {"flag": "Flag"}, {"addedTime": "AddedTime"}, {"weight": "Weight"}, {"content": "Content"}];
     then(function(cont){
         cn.find({},{},cont);
@@ -48,20 +50,17 @@ exports.rename2 = function (req, res, next) {
 };
 
 exports.del1 = function (req, res, next) {
-    var cn  = require('../lib/mongodbBase/db').cns.spider;
-    cn.count({$lt: new Date( "2015-04-19")},function(err,count){
+    spider.count({$lt: new Date( "2015-04-19")},function(err, count){
         res.send(count);
     });
 };
 exports.del2 = function (req, res, next) {
-    var cn  = require('../lib/mongodbBase/db').cns.spider;
-    cn.remove({$gt: new Date( "2015-04-19")},function(err,count){
+    spider.remove({$gt: new Date( "2015-04-19")},function(err,count){
         res.send(count);
     });
 };
 exports.del3 = function (req, res, next) {
-    var cn  = require('../lib/mongodbBase/db').cns.spider;
-    cn.remove({$lt: new Date( "2015-04-19")},function(err,count){
+    spider.remove({$lt: new Date( "2015-04-19")},function(err,count){
         res.send(count);
     });
 };
