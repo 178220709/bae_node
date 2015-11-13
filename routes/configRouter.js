@@ -11,7 +11,7 @@ var logger = require('morgan');
 
 module.exports.cfgView = function(app){
     // view engine setup
-    app.set('views', process.cwd()+'/views');
+
     //app.set('view engine', 'jade');
     app.set('view engine', 'ejs');
 
