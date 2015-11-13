@@ -28,13 +28,13 @@ for(var apiKey in apis){
 
 
 _.each(apiList, function (api) {
-    router.post(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
-    router.get(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
+    router.use(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
+   // router.get(_.template("/<%= ctrl %>/<%= action %>")(api), api.fun);
 });
 
 
 if (!process.env.USER_ShowApi || process.env.USER_ShowApi === 1) {//配置，关掉api说明
-    router.get('/', function (req, res, next) {
+    router.use('/', function (req, res, next) {
         res.render('apiShow', {
             title: 'api 说明', actions: _.map(apiList, function (api) {
                 return {
