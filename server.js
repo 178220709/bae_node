@@ -30,12 +30,9 @@ _.each(apiKeyArray, function (apiName) {
 
 //register task
 taskConfig();
-
-
 var app = express();
 
-
-app.set('views',  './views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 configRouter.cfgView(app);
 
