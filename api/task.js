@@ -32,6 +32,7 @@ exports.start = function (req, res, next) {
     _.each(rTasks, function (task) {
         task.start();
     });
+    res.send(req.body)
 };
 
 exports.stop = function (req, res, next) {
@@ -41,4 +42,5 @@ exports.stop = function (req, res, next) {
     _.each(rTasks, function (task) {
         task.stop();
     });
+    res.send(req.body)
 };
