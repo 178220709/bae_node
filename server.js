@@ -34,10 +34,13 @@ taskConfig();
 
 var app = express();
 
-configRouter.cfgView(app);
-configRouter.cfgError(app);
-configRouter.cfgRouter(app);
 
+app.set('views',  './views');
+app.set('view engine', 'ejs');
+configRouter.cfgView(app);
+
+configRouter.cfgRouter(app);
+configRouter.cfgError(app);
 
 
 module.exports = app;
