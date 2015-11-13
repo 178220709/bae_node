@@ -17,8 +17,7 @@ module.exports.cfgView = function(app){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
-    app.use(express.static( process.cwd()+"/public"));
-    //app.use(express.static(path.join(__dirname, 'public')));
+
 };
 
 module.exports.cfgRouter = function(app){
