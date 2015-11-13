@@ -31,7 +31,8 @@
     var me;
     me = this;
     me.status = 1;
-    return this.task = setInterval(me.trigger, me.option.interval);
+    this.task = setInterval(me.trigger, me.option.interval);
+    return me.trigger();
   };
 
   TaskItem.prototype.stop = function() {

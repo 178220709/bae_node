@@ -22,6 +22,7 @@ TaskItem.prototype.start = ()->
   me = this
   me.status = 1
   this.task = setInterval(me.trigger, me.option.interval)
+  me.trigger()
 
 
 TaskItem.prototype.stop = ()->
