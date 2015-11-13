@@ -15,6 +15,7 @@ module.exports.cfgView = function(app){
     //app.set('view engine', 'jade');
     app.set('view engine', 'ejs');
 
+    app.set('views',process.cwd() + '/views');
     // uncomment after placing your favicon in /public
     app.use(logger('dev'));
     app.use(bodyParser.json());

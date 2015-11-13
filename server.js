@@ -33,10 +33,11 @@ taskConfig();
 
 
 var app = express();
-app.set('views','./views');
-configRouter.cfgRouter(app);
+
 configRouter.cfgView(app);
 configRouter.cfgError(app);
+configRouter.cfgRouter(app);
+
 
 
 module.exports = app;
