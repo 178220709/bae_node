@@ -10,5 +10,5 @@ module.exports = (isRun=true)->
   taskFactory.add(item2)
   if isRun
     item1.start()
-    item2.start()
+    #item2.start()
 

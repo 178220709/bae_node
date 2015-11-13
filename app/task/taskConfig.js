@@ -17,8 +17,7 @@
     taskFactory.add(item1);
     taskFactory.add(item2);
     if (isRun) {
-      item1.start();
-      return item2.start();
+      return item1.start();
     }
   };
 

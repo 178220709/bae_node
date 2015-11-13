@@ -16,8 +16,8 @@ var getFlag = function (url) {
     return (url.slice(-7));
 };
 
-haha.getModelThen = function (url) {
-    return help.getUrlThen(url).then(function (cont, data) {
+haha.getModelThen = function (url, topCont) {
+    help.getUrlThen(url).then(function (cont, data) {
         var joke = {};
         joke.Type = 1;
         var $ = help.load(data);
@@ -30,7 +30,7 @@ haha.getModelThen = function (url) {
         joke.Weight = parseInt(weight);
         joke.Flag = getFlag(url);
         joke.AddedTime = new Date();
-        cont(null, joke, {zan: zan, bishi: bishi});
+        topCont(null, joke);
     });
 };
 
@@ -52,7 +52,7 @@ haha.getCurrentThen = function () {
 
 
 var insertUrlThen = function (url, callCont) {
-    return then(function (cont) {
+    then(function (cont) {
         collection.findOne({Url: url}, {}, cont);
     }).then(function (cont, doc) {
         if (doc) {
@@ -64,7 +64,11 @@ var insertUrlThen = function (url, callCont) {
     }).then(function (cont) {
         haha.getModelThen(url, cont)
     }).then(function (cont, model) {
-        collection.insert(model, cont);
+        if (model.Content ){
+            collection.insert(model, cont);
+        }else {
+            cont(new Error("haha get wrong content "))
+        }
     }).then(function (cont, doc) {
         help.log("model is insert :" + doc.Url);
         callCont(null);

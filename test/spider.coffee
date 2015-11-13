@@ -2,9 +2,10 @@ assert = require("assert")
 should = require('chai').should()
 _ = require("lodash")
 util = require("./public/util")
-help = require("./spider/core/spiderHelper")
-haha = require("./spider/haha/haha")
-youmin  = require("./spider/youmin/youmin")
+help = require("../app/spider/core/spiderHelper")
+haha = require("../app/spider/haha/haha")
+youmin  = require("../app/spider/youmin/youmin")
+spider  = require("../app/mongodbBase/db").spider
 
 
 describe "core", ->
@@ -45,7 +46,6 @@ describe "haha spider config ", ->
 describe " youmin spidr config ", ->
   it "#getModelThen()", (done)->
     youmin.getModelThen("").then (cont, model, zb)->
-      #游民结构发生变更
 
       done()
 
