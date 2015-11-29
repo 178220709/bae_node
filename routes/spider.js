@@ -9,13 +9,7 @@ var cn = require('../app/mongodbBase/db').spider;
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    var re = {
-        title: "this is spider title",
-        body: "this is spider body ",
-        time: new Date(),
-        env: process.env
-    };
-    res.send(re);
+    res.render("spider")
 });
 
 router.get('/haha', function (req, res, next) {

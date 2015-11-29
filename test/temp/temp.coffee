@@ -1,8 +1,8 @@
 assert = require("assert")
 should = require('chai').should()
 _ = require("lodash")
-util = require("./public/util")
-spider = require("../app/mongodbBase/db").spider
+util = require("../../app/public/util")
+spider = require("../../app/mongodbBase/db").spider
 
 
 describe "dbtest", ->

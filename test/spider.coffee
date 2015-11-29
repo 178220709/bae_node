@@ -1,11 +1,12 @@
 assert = require("assert")
 should = require('chai').should()
 _ = require("lodash")
-util = require("./public/util")
+util = require("../app/public/util")
 help = require("../app/spider/core/spiderHelper")
 haha = require("../app/spider/haha/haha")
-youmin  = require("../app/spider/youmin/youmin")
-spider  = require("../app/mongodbBase/db").spider
+youmin = require("../app/spider/youmin/youmin")
+spider = require("../app/mongodbBase/db").spider
+thenjs= require('thenjs')
 
 
 describe "core", ->
@@ -27,11 +28,16 @@ describe "core", ->
 
 describe "haha spider config ", ->
   it "#getModelThen()", (done)->
-    haha.getModelThen(haha.exurl).then (cont, model, zb)->
+    thenjs((cont)->
+      haha.getModelThen(haha.exurl,cont)
+      .then (cont, model, zb)->
       model.Content.length.should.above 1
       zb.zan.should.ok
       zb.bishi.should.ok
       done()
+    )
+
+
 
   it "#getCurrentThen()", (done)->
     haha.getCurrentThen().then (cont, urls)->
@@ -46,7 +52,6 @@ describe "haha spider config ", ->
 describe " youmin spidr config ", ->
   it "#getModelThen()", (done)->
     youmin.getModelThen("").then (cont, model, zb)->
-
       done()
 
   it "#getCurrentThen()", (done)->
