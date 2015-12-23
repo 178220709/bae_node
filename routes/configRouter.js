@@ -11,7 +11,6 @@ var logger = require('morgan');
 
 module.exports.cfgView = function(app){
 
-
     // uncomment after placing your favicon in /public
     app.use(logger('dev'));
     app.use(bodyParser.json());
