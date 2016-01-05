@@ -27,5 +27,5 @@ interface String {
     format(...args: any[]): string;
 }
 interface Array<T> {
-    toChain(): LoDashExplicitObjectWrapper<T>;
+    chain(): LoDashExplicitObjectWrapper<T>;
 }
