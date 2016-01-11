@@ -2,7 +2,8 @@
 /*global global, require, process, module, baejs*/
 /*jslint node: true */
 
-var monk = require('monk');
+var mongo = require('mongoskin');
+
 var os = require('os');
 var db;
 var url;
@@ -15,12 +16,14 @@ else if ( os.hostname()=='DESKTOP-92VGR1C' ) {
 }else{
     url = 'mywin.int/spider';
 }
-db = monk(url);
-console.log(url + ' mongodb is init');
+db =  mongo.db( "mongodb://"+ url, {native_parser:true});
+console.log(url + ' mongodb is init \n');
 
 module.exports.db = db;
 module.exports.url = url;
 
-module.exports.spider =  db.get("spider");
+db.bind('spider');
+
+module.exports.spider =  db.spider;
 
 

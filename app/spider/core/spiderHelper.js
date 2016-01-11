@@ -23,20 +23,6 @@ help.getUrlThen = function (url) {
     });
 };
 
-help.addModelThen = function (model, type, cont) {
-    model.Type = model.Type || type;
-    if (!model.Type) {
-        cont(new Error("type is must"));
-        return;
-    }
-    if (!model.Content) {
-        cont(new Error("Content is must"));
-        return;
-    }
-    collection()
-
-};
-
 
 help.log = console.log;
 

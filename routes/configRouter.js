@@ -5,14 +5,11 @@ var express = require('express');
 var router = express.Router();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var path = require('path');
-var logger = require('morgan');
 
 
 module.exports.cfgView = function(app){
 
     // uncomment after placing your favicon in /public
-    app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
