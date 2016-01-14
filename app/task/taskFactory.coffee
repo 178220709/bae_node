@@ -16,7 +16,7 @@ o.getAll = ()-> o.tasks
 
 o.add = (item)->
   names = o.getAllNames()
-  unless _.include(names,item.name)
+  unless _.includes(names,item.name)
     o.tasks.push(item)
 
 o.get = (name)-> _.find(o.tasks, (item)-> item.name == name)

@@ -23,7 +23,7 @@
   o.add = function(item) {
     var names;
     names = o.getAllNames();
-    if (!_.include(names, item.name)) {
+    if (!_.includes(names, item.name)) {
       return o.tasks.push(item);
     }
   };
