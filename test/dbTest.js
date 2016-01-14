@@ -6,11 +6,11 @@ should = require('chai').should();
 
 _ = require("lodash");
 
-util = require("../../app/public/util");
+util = require("../app/public/util");
 
-spider = require("../../app/mongodbBase/db").spider;
+spider = require("../app/mongodbBase/db").spider;
 
-describe("dbtest", function () {
+describe("dbtest base crud", function () {
     it("#find", function (done) {
         spider.find().toArray(function (err, items) {
             assert.ok(err == null);
@@ -25,7 +25,7 @@ describe("dbtest", function () {
         spider.insert(obj, (err, doc)=> {
             var id = doc.insertedIds[0].toString()
             var attr2 = doc.ops[0].attr2
-             console.log("the obj is inserted id: {0} ,  attr2:{1}".format(id,attr2))
+            console.log("the obj is inserted id: {0} ,  attr2:{1}".format(id, attr2))
             done()
         })
     });
@@ -39,4 +39,23 @@ describe("dbtest", function () {
             done()
         })
     });
+});
+
+describe("dbtest query", function () {
+
+    it("#combin query", function (done) {
+        var query = {
+            Url: /053/,
+            AddedTime: {$lt: new Date()}
+        }
+
+        var cursor =  spider.find(query)
+        spider.find(query).toArray((err, doc)=> {
+            var id = doc.insertedIds[0].toString()
+            var attr2 = doc.ops[0].attr2
+            console.log("the obj is inserted id: {0} ,  attr2:{1}".format(id, attr2))
+            done()
+        })
+    });
+
 });

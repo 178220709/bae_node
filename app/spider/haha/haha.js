@@ -70,7 +70,7 @@ var insertUrlThen = function (url, callCont) {
             cont(new Error("haha get wrong content "))
         }
     }).then(function (cont, doc) {
-        help.log("model is insert :" + doc.Url);
+        help.log("model is insert :" + url);
         callCont(null);
     }).fail(function (cont, err) {
         help.log(err);

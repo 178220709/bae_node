@@ -11,30 +11,28 @@ var findDocuments = function(opts,cnName,result) {
     var defOpts = {
         pageSize : 10,
         pageIndex : 1,
-        sort:{AddedTime:-1}
+        sort:{AddedTime:-1},
+        cnName:"spider"
     };
+
+    var query = _.clone(opts)
+    _.mapKeys(defOpts,(value,key)=> delete query[key] )
+
     var opt  = _.extend(defOpts,opts);
-    //$lt:小于
-    var query = {};
-    if(opts.AddedTime){
-        query.AddedTime = {$gt: new Date( opts.AddedTime)};
-    }
-    if(opts.cnName){
-        cnName = opts.cnName;
-    }
+    var cn = db[opt.cnName]
+
     result.PageSize = opt.pageSize;
     result.PageIndex = opt.pageIndex;
     return then(function(cont){
-        db.get(cnName).count(query,cont);
+        cn.count(query,cont);
     }).then(function(cont,count){
         result.Count = count;
-        db.get(cnName).find(query,
+        cn.find(query,
             {
                 limit : opt.pageSize,
                 skip:(opt.pageIndex-1)*opt.pageSize,
                 sort : opt.sort
-            }, // <-  here
-            cont); //  function (err,res)
+            }).toArray(cont); //  function (err,res)
     }).fail(function(cont,error){
         result.Msg=error.message;
     });
