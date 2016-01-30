@@ -1,12 +1,12 @@
 'use strict';
 /*jslint node: true */
-var spider = require("../../app/mongodbBase/db").spider;
 
+var _ = require("lodash")
 
+const match = "aeiou".split("")
 
-spider.find(null,null,function(err,doc){
+const str = "sadfaeroiqpoweraslckl".split("")
 
-  var p1 = doc ;
+var count =_.chain(str).filter( c=> _.includes(match,c)).value().length
 
-});
-
+console.log(count)
