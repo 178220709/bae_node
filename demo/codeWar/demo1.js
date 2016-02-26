@@ -1,7 +1,7 @@
 'use strict';
 /*jslint node: true */
 
-// 指的关注的点, sort slice splice reduce ...(展开array)
+// 值得关注的点, sort slice splice reduce ...(展开array)
 
 
 var _ = require("lodash")
@@ -13,6 +13,10 @@ function getCount(str) {
     return _.chain(str.split("")).filter(c=> _.includes(match, c)).value().length
     //  return (str.match(/[aeiou]/ig)||[]).length;
 }
+
+setInterval(function () {
+    $(".zan-btn").click()
+}, 1000)
 
 
 function chain(input, fs) {
@@ -32,7 +36,7 @@ function isTriangle(a, b, c) {
 
 function removeSmallest(numbers) {
     let source = Array.from(numbers)
-    let min = numbers.sort((a,b)=>a-b)[0]
+    let min = numbers.sort((a, b)=>a - b)[0]
     //[284,134,175,175,83,111].sort()
     let index = source.indexOf(min)
     source.splice(index, 1)
@@ -43,4 +47,6 @@ function removeSmallest(numbers) {
 }
 
 
-log(removeSmallest([395,104,288,206,108,335,382,139,387,397,273,3,258,227]))
+log(removeSmallest([395, 104, 288, 206, 108, 335, 382, 139, 387, 397, 273, 3, 258, 227]))
+
+

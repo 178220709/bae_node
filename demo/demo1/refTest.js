@@ -3,10 +3,15 @@
 
 var _ = require("lodash")
 
-const match = "aeiou".split("")
+var log = console.log.bind(console)
 
-const str = "sadfaeroiqpoweraslckl".split("")
 
-var count =_.chain(str).filter( c=> _.includes(match,c)).value().length
 
-console.log(count)
+var getName = function () { return (4);};
+function getName() { return (5);}
+
+
+
+
+    log (getName()) ;//4
+

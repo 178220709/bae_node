@@ -69,4 +69,11 @@ function duplicateEncode(word){
     // ...
 }
 
-log(insertDash(454793))
+function warp(word,key){
+    let str = "msjkeylslkey"
+   var reg  = new RegExp( key, "gi");
+    return str.replace(reg,(val,index)=>  "<span>"+ val  +"</span>"   )
+
+    // ...
+}
+log(warp("msjkeylslkey","key"))
