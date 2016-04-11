@@ -90,10 +90,10 @@ function spinWords(str) {
 
 var largestDifference = function (data) {
     let dist = 0;
-    for (let i = 0; i < data.length-1; i++) {
-        for (let j = i+1; j < data.length; j++) {
+    for (let i = 0; i < data.length - 1; i++) {
+        for (let j = i + 1; j < data.length; j++) {
             if (data[i] <= data[j]) {
-                dist = Math.max(dist,j-i)
+                dist = Math.max(dist, j - i)
             }
         }
     }
@@ -106,14 +106,25 @@ var largestDifference = function (data) {
 //    return fibonacci(n-1) + fibonacci(n-2);
 //}
 
-var fibonacci = function(n,acc1,acc2) {
-    acc1 = acc1 ||1
-    acc2 = acc2 ||1
-    if(n<=2)
+var fibonacci = function (n, acc1, acc2) {
+    acc1 = acc1 || 1
+    acc2 = acc2 || 1
+    if (n <= 2)
         return acc2;
-    return fibonacci(n-1,acc2,acc1+acc2)                          ;
+    return fibonacci(n - 1, acc2, acc1 + acc2);
 
 }
 
+const unit = ["m", "km", "Mm","Gm","Tm","Pm","Em","Zm","Ym"]
+function meters(x) {
+    let base = x, pow = 0;
+    while (base >= 1000) {
+        base = base / 1000
+        pow++
+    }
+    return base + unit[pow]
+}
 
-log(fibonacci(50,1,1))
+
+log(meters(51500))
+log(meters(12300000))
