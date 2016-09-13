@@ -115,7 +115,7 @@ var fibonacci = function (n, acc1, acc2) {
 
 }
 
-const unit = ["m", "km", "Mm","Gm","Tm","Pm","Em","Zm","Ym"]
+const unit = ["m", "km", "Mm", "Gm", "Tm", "Pm", "Em", "Zm", "Ym"]
 function meters(x) {
     let base = x, pow = 0;
     while (base >= 1000) {
@@ -126,5 +126,41 @@ function meters(x) {
 }
 
 
-log(meters(51500))
-log(meters(12300000))
+let countp = 0
+function permutations(string) {
+    var arr = string.split(''), tmp = arr.slice(), heads = [], out = [];
+    if (string.length == 1) return [string];
+    arr.forEach(function (v, i, arr) {
+        if (heads.indexOf(v) == -1) {
+            heads.push(v);
+            tmp.splice(tmp.indexOf(v), 1);
+            permutations(tmp.join('')).forEach(function (w) {
+                log(countp++)
+                out.push(v + w);
+            });
+            tmp.push(v);
+        }
+    });
+    return out;
+}
+
+
+let ms = [0, 6, 7, 5, 0, 8, 1, 0]
+function shotm() {
+    var N = parseInt(readline());
+    for (var i = 0; i < N; i++) {
+        var pi = parseInt(readline());
+    }
+}
+
+
+let mutations = {
+    ["what"] (){
+        console.log("what is call")
+    }
+}
+
+
+log([5, 3, 2, 1, 6].sort((a, b)=>a > b))
+
+log(shotm('qqqq'))
