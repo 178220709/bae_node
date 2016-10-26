@@ -2,6 +2,7 @@
  * Created by jsons on 2016/10/26.
  */
 'use strict';
+//https://www.codewars.com/kata/522f421badceba9f8a0000a6/train/javascript
 var _ = require("lodash")
 var log = console.log.bind(console)
 
