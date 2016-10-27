@@ -21,7 +21,7 @@ function getThen(url) {
                 data += chunk;
             });
             res.on("end", function () {
-                resolve(data,data);
+                resolve(data, 2,3);
             });
         }).on("error", reject);
     });
@@ -31,9 +31,13 @@ function getThen(url) {
 describe("dbtest base crud", function () {
     it("#find", function (done) {
         getThen(url)
-            .then(a=>{console.log(a);return 10;})
-            .then(a=>{
-                console.log(a?a:"ok but a is null")
+            .then((a,b,c)=> {
+                console.log(a);
+                return 10;
+            })
+            .then(a=> {
+                console.log(a ? a : "ok but a is null");
+                return 2
             })
             .then(a=>done())
             .catch(a=> console.log("error"))
