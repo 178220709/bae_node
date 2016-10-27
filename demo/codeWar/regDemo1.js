@@ -69,11 +69,41 @@ function duplicateEncode(word){
     // ...
 }
 
-function warp(word,key){
+function warp(word,key) {
     let str = "msjkeylslkey"
-   var reg  = new RegExp( key, "gi");
-    return str.replace(reg,(val,index)=>  "<span>"+ val  +"</span>"   )
+    var reg = new RegExp(key, "gi");
+    return str.replace(reg, (val, index)=> "<span>" + val + "</span>")
 
     // ...
 }
-log(warp("msjkeylslkey","key"))
+
+function Automaton()
+{
+    this.states = [];
+    this.state = "q1"
+}
+
+Automaton.prototype.readCommands = function(commands)
+{
+    // Return true if we end in our accept state, false otherwise.
+    commands.forEach(command=>this.dealOneCommand(command));
+    return this.state==="q2"
+};
+Automaton.prototype.dealOneCommand = function(command)
+{
+   switch (this.state){
+       case "q1": if (command==1) this.state="q2" ;
+           break;
+       case "q2" : if (command==0) this.state="q3" ;
+           break;
+       case "q3" : this.state="q2" ;
+           break;
+   }
+};
+var myAutomaton = new Automaton();
+
+log(myAutomaton.readCommands(["1"]));
+log(myAutomaton.readCommands(["1", "0", "0", "1"]));
+
+// Do anything necessaryto set up your automaton's states, q1, q2, and q3.
+

@@ -16,14 +16,16 @@
     "mongoskin": "~2.0.3",
     "cheerio": "~0.18.0",
     "lodash": "~3.10.1",
-    "thenjs": "~2.0.0",
-    "bluebird": "*"
+    "thenjs": "~2.0.4",
+    "vue-resource": "^0.9.3",
+    "bluebird": "~3.4.6"
   },
   "devDependencies": {
     "debug": "~2.1.1",
     "q": "~1.2.0",
     "chai": "*",
-    "mocha": "*"
+    "request": "~2.76.0",
+    "mocha": "~3.1.2"
   },
   "engines": {
     "node": ">=4.2.2"
