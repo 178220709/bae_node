@@ -29,11 +29,19 @@ let checkFun = function () {
 }
 
 
-checkFun().then((cont, flag)=> {
-    console.log("result over is " + flag);
-}).then(cont=>{
-    console.log("result2 ");
+// checkFun().then((cont, flag)=> {
+//     console.log("result over is " + flag);
+// }).then(cont=>{
+//     console.log("result2 ");
+// })
+
+Thenjs.each([4, 5, 6], (cont, value) => {
+    log(value);
+    task(value, cont);
+}).then(cont=> {
+    log(7)
 })
+
 //
 // Thenjs(function (cont) {
 //     task(10, cont);
