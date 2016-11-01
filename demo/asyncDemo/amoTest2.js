@@ -1,8 +1,8 @@
 'use strict';
-var request = require('request');
+var request = require('request')
 var then = require('thenjs');
-var _ = require("lodash");
-var log = console.log.bind(console);
+var _ = require("lodash")
+var log = console.log.bind(console)
 //https://cnodejs.org/topic/580599e00bab808265185ebc
 let getUrlAsync = function (opt) {
     return then(function (cont) {
@@ -21,10 +21,8 @@ let res = {
     getChild: (id, rootId)=> getUrlAsync(`http://hr.amiaodaifu.com:50000/1610/questions/${id}/get-children/${rootId}`, "get"),
     checkTree: (questionId, root)=> getUrlAsync({
         url: `http://hr.amiaodaifu.com:50000/1610/questions/${questionId}/check`,
-        // url: `http://localhost:4071/api/temp/test1`,
         method: "post",
-        body: {root: root},
-        json: true
+        form: {root: root}
     }),
 };
 //{"id":"05f0556c-d6dd-43dc-b665-f3dbeb53f106","rootId":1}
@@ -36,6 +34,11 @@ let getTree = function (questionId, rootId, callback) {
     };
     let nodeQueue = [{id: rootId, node: node, index: 0}];
 
+    let hasNext = function (node) {
+        
+    }
+    
+    
     let getNode = function () {
         if (nodeQueue.length == 0) {
             let result = _.cloneDeep(node);
@@ -55,7 +58,7 @@ let getTree = function (questionId, rootId, callback) {
                     //set current node's children and push them  in queue(recursion)
                     childs.forEach(c=> {
                         qnode.node.children.push(c);
-                        nodeQueue.push({id: c.id, node: c})
+                        nodeQueue.push({id: c.id, node: c, pid: _id})
                     });
                     cont(null)
                 })
