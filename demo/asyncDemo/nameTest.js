@@ -1,22 +1,13 @@
-var request = require('request')
-request(
-    { method: 'GET'
-      , uri: 'http://www.baidu.com'
-      , gzip: true
-    }
-    , function (error, response, body) {
-      // body is the decompressed response body
-      console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'))
-      console.log('the decoded data is: ' + body)
-    }
-).on('data', function(data) {
-      // decompressed data as it is received
-      console.log('decoded chunk: ' + data)
+let asyncTask = (s) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            console.log("resolve:" + (s + 1))
+            resolve(s + 1)
+        }, s * 1000)
     })
-    .on('response', function(response) {
-      // unmodified http.IncomingMessage object
-      response.on('data', function(data) {
-        // compressed data as it is received
-        console.log('received ' + data.length + ' bytes of compressed data')
-      })
-    })
+}
+
+asyncTask(1).then(async s => {
+    let result = await asyncTask(s)
+    return new Promise((resolve) => resolve(result))
+}).then(res => console.log("result:" + res))

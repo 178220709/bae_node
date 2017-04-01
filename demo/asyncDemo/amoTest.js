@@ -22,7 +22,7 @@ let res = {
     checkTree: (questionId, root)=> getUrlAsync({
         url: `http://hr.amiaodaifu.com:50000/1610/questions/${questionId}/check`,
         method: "post",
-        form: {root: root}
+        form: {root: JSON.stringify(root)}
     }),
 };
 //{"id":"05f0556c-d6dd-43dc-b665-f3dbeb53f106","rootId":1}
