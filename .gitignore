@@ -2,3 +2,4 @@
 /.idea
 /demo/cmd/node_modules
 /public/spider
+/config.js
