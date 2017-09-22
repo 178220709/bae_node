@@ -5,18 +5,18 @@ var _ = require("lodash")
 
 var log = console.log.bind(console)
 
-import util from "nameTest"
+let fun = _.debounce(() => {
+    console.log("123")
+}, 90);
 
-util.getSth()
+for (let i = 0; i < 10; i++) {
+    setTimeout(() => {
+        fun()
+    }, _.random(10, 1000))
+}
+setTimeout(() => {
+    fun()
+}, 2000)
 
 
-
-
-var getName = function () { return (4);};
-function getName() { return (5);}
-
-
-
-
-    log (getName()) ;//4
 
