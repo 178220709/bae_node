@@ -8,5 +8,8 @@ data["A12"] = "10.5";
 data["A13"] = "11";
 `;
 
-let what = eval(str + "data;");
-console.log(what);
+let err = require("./error.json");
+
+
+console.log(err.trace);
+console.log(err.message);
