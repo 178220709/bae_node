@@ -18,11 +18,11 @@ module.exports.cfgView = function(app){
 
 module.exports.cfgRouter = function(app){
     var index = require('./index');
-    var registerAPI = require('./registerAPI');
+    //var registerAPI = require('./registerAPI');
     var users = require('./users');
     var spider = require('./spider');
     app.use('/', index);
-    app.use('/api', registerAPI);
+    //app.use('/api', registerAPI);
     app.use('/users', users);
     app.use('/spider', spider);
 };
