@@ -7,25 +7,26 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "bluebird": "~3.4.6",
-    "body-parser": "~1.18.2",
+    "bluebird": "~3.5.1",
+    "body-parser": "~1.18.3",
     "cheerio": "~0.18.0",
     "cookie-parser": "~1.4.3",
-    "ejs": "~2.3.1",
-    "express": "~4.16.2",
-    "lodash": "~4.17.4",
-    "mongodb": "~2.0",
-    "mongoskin": "~2.0.3",
-    "mysql2": "^1.4.2",
-    "sequelize": "^4.8.2",
-    "serve-favicon": "~2.2.0",
-    "thenjs": "~2.0.6"
+    "ejs": "^2.6.1",
+    "express": "~4.16.3",
+    "lodash": "~4.17.10",
+    "mongodb": "~3.0.10",
+    "mongoskin": "~2.1.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10",
+    "serve-favicon": "~2.5.0",
+    "thenjs": "~2.1.0"
   },
   "devDependencies": {
     "chai": "*",
     "debug": "~2.1.1",
     "mocha": "~3.1.2",
     "q": "~1.2.0",
+    "jquery": "^3.3.1",
     "request": "~2.76.0"
   },
   "engines": {
