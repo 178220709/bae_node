@@ -1,0 +1,15 @@
+{
+  "touser": "oI7f11THdawlQ3gHxA5q-dSRceOw",
+  "data": {
+    "keyword1": {
+      "color": "",
+      "value": "一链网-医药协同平台"
+    },
+    "keyword2": {
+      "color": "#173177",
+      "value": "\t您有一条收货信息，请注意查收\n\t发货单号:CC201810160007\n\t采购商:asdasd\n\t发货金额:￥123,100.00\n\t收货日期:2018-10-18 00:00:00"
+    }
+  },
+  "template_id": "N5D64zrMYah_abh8i6kb6BFqGC2_Y12WyGS5WMqsD9w",
+  "url": "http://uat-sc-mobile.onelinkplus.com/#/collectGoods?deliveryId=2734"
+}

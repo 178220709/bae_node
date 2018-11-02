@@ -7,11 +7,11 @@ let favicon = require('serve-favicon');
 
 const configRouter = require('./routes/configRouter');
 const taskConfig = require('./app/task/taskConfig');
-
+global.baejs = {};
 
 //register api
 const apiKeyArray = ["spider", "task", "temp", "jsonp"];
-
+baejs.apis = apiKeyArray;
 //register task
 taskConfig();
 var app = express();
