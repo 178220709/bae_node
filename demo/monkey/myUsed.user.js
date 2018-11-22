@@ -92,5 +92,22 @@ if (url.indexOf("www.zhihu.com/question") >= 0) {
     })
 }
 
+if (/btso.pw/.test(url)) {
+    console.log("check has pwCount");
+    let count = localStorage.getItem("pwCount") || 3;
+    $(".data-list a").each((i, e) => {
+        if (i >= count) return;
+        $.get($(e).attr("href")).then(res => {
+            let mxStr = $(res).find("#magnetLink").text();
+            console.log(mxStr)
+            $(e).closest(".row").append(`<div> <input type="text" value="${mxStr}" style="width: 1200px"></div>`)
+        })
+    });
+}
+
+
+
+
+
 
 
